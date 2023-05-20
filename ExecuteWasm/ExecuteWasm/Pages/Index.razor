@@ -1,0 +1,20 @@
+﻿@page "/"
+@using ExecuteWasm.WasmModules;
+@inject AddWasmModule AddModule
+
+<input @bind=A />
+<input @bind=B />
+<p>@Message</p>
+<button @onclick=Add >Sumar</button>
+
+@code{
+    int A, B;
+    string Message;
+
+    async Task Add()
+    {
+        int result = await AddModule.Add(A,B);
+        Message = $"Resultado: {result}";
+    }
+
+}
